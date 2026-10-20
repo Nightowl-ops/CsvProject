@@ -65,7 +65,17 @@ GET http://localhost:8080/api/employees/process?threads=4
 }
 
 
+## Local Setup & Execution
 
+### Prerequisites
+- Java 17+
+- Maven 3.8+
+
+### Build & Run
+1. Clone the repository and navigate to the project root.
+2. Build the application:
+   ```bash
+   mvn clean package
 
 
 
