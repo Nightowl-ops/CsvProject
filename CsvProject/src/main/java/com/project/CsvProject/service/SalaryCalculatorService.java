@@ -25,16 +25,16 @@ public class SalaryCalculatorService {
             return employee.getCurrentSalary();
         }
 
-        // Rule 2: Base role rate
+        // rule 2: Base role rate
         double totalRate = employee.getRole().getBaseRate();
 
-        // Rule 3: Tenure rate (only if completed at least 1 full year)
+        // rule 3: Tenure rate (only if completed at least 1 full year)
         long yearsWorked = ChronoUnit.YEARS.between(employee.getJoinedDate(), referenceDate);
         if (yearsWorked >= 1) {
             totalRate += (yearsWorked * YEARLY_TENURE_RATE);
         }
 
-        // Updated Salary = Current Salary * (1 + totalRate)
+        // updated salary = Current Salary * (1 + totalRate)
         BigDecimal multiplier = BigDecimal.valueOf(1.0 + totalRate);
         return employee.getCurrentSalary()
                 .multiply(multiplier)
