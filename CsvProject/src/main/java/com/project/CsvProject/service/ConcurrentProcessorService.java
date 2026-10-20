@@ -108,6 +108,12 @@ public class ConcurrentProcessorService {
 
         return processedList;
     }
+    public int getProcessedCount() {
+        return processedCount.get();
+    }
 
+    public double getTotalIncrementPool() {
+        return totalIncrementPool.doubleValue();
+    }
 
 }
