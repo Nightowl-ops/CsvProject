@@ -37,3 +37,35 @@ id,name,role,currentSalary,performanceScore,joinDate
 2,Bob Smith,MANAGER,75000.00,72.0,2021-06-01
 3,Charlie Brown,EMPLOYEE,50000.00,55.0,2019-03-10
 4,Diana Prince,EMPLOYEE,60000.00,90.0,2022-11-20
+
+
+## REST API Specification
+
+### Process Employees Pipeline
+Executes the CSV reader, runs the concurrent calculation pipeline, and outputs results.
+
+- **URL**: `/api/employees/process`
+- **Method**: `GET`
+- **Query Parameters**:
+  - `threads` (optional, integer, default: `4`): Number of worker threads allocated to the thread pool.
+
+#### Sample Request
+```http
+GET http://localhost:8080/api/employees/process?threads=4
+
+
+
+{
+  "status": "SUCCESS",
+  "threadPoolSize": 4,
+  "recordsProcessed": 4,
+  "totalPayrollIncrease": 8800.0,
+  "executionTimeMs": 28,
+  "employees": [ ... ]
+}
+
+
+
+
+
+
