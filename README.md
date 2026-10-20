@@ -26,3 +26,14 @@ The engine uses Java's `java.util.concurrent` primitives to guarantee thread saf
 - **`ReentrantLock`**: Mutually excludes threads when modifying shared memory collections (`processedList.add(emp)`), preventing race conditions and index corruption.
 - **`AtomicInteger`**: Tracks records processed using hardware-level Compare-And-Swap (CAS) instructions.
 - **`DoubleAdder`**: High-throughput thread-safe accumulator tracking aggregate payroll expenditure across threads without lock contention.
+
+## Input Data Schema (`employees.csv`)
+
+The processor ingests CSV records from `src/main/resources/employees.csv` structured with the following header:
+
+```csv
+id,name,role,currentSalary,performanceScore,joinDate
+1,Alice Johnson,DIRECTOR,100000.00,85.0,2020-01-15
+2,Bob Smith,MANAGER,75000.00,72.0,2021-06-01
+3,Charlie Brown,EMPLOYEE,50000.00,55.0,2019-03-10
+4,Diana Prince,EMPLOYEE,60000.00,90.0,2022-11-20
