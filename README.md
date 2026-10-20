@@ -79,3 +79,13 @@ GET http://localhost:8080/api/employees/process?threads=4
 
 
 
+## Postman Testing & Verification
+
+1. Start the Spring Boot server.
+2. Open Postman, select `GET`, and trigger:
+   `http://localhost:8080/api/employees/process?threads=4`
+3. Inspect the returned JSON body to verify:
+   - Status returns `SUCCESS`.
+   - `recordsProcessed` matches total CSV lines.
+   - Salaries reflect tenure and role formulas.
+4. Check the application runtime terminal to observe thread names (`[pool-1-thread-X]`) logging concurrent task execution.
