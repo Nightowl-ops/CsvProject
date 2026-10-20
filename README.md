@@ -17,3 +17,12 @@ Salary adjustments are computed deterministically based on employee role, evalua
     - `EMPLOYEE`: 1% base increment
 3. **Tenure Accumulation**: Eligible employees receive an additional `+2%` for each full year of service (minimum 1 full year required).
 4. **Financial Precision**: All calculations utilize Java `BigDecimal` with half-up rounding to prevent floating-point drift.
+
+## Concurrency & Thread Synchronization
+
+The engine uses Java's `java.util.concurrent` primitives to guarantee thread safety:
+- **`ExecutorService (FixedThreadPool)`**: Dispatches individual employee records across parallel worker threads.
+- **`Semaphore(2)`**: Acts as a throttling mechanism, limiting concurrent execution blocks to a maximum of 2 simultaneous threads.
+- **`ReentrantLock`**: Mutually excludes threads when modifying shared memory collections (`processedList.add(emp)`), preventing race conditions and index corruption.
+- **`AtomicInteger`**: Tracks records processed using hardware-level Compare-And-Swap (CAS) instructions.
+- **`DoubleAdder`**: High-throughput thread-safe accumulator tracking aggregate payroll expenditure across threads without lock contention.
